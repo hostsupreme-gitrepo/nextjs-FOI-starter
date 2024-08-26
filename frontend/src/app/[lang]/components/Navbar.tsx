@@ -68,10 +68,13 @@ export default function Navbar({
     setMobileMenuOpen(false);
   };
   return (
+
     <div className="p-4 dark:bg-black dark:text-gray-100">
-      <div className="container flex justify-between h-16 mx-auto px-0 sm:px-6">
+      
+      <div className="container flex justify-between h-26 mx-auto px-0 sm:px-6">
+
         <Logo src={logoUrl}>
-          {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
+          {logoText && <h2 className="text-2xl  font-bold">{logoText}</h2>}
         </Logo>
 
         <div className="items-center flex-shrink-0 hidden lg:flex">

@@ -38,12 +38,12 @@ export default function Hero({ data }: HeroProps) {
 
   return (
     <section className="dark:bg-black dark:text-gray-100">
-      <div className="container flex flex-col bg-[url('../uploads/0818241539_HDR_2_50_30cbccf403.jpg')]  justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+      <div className="container -mt-4 sm:-mt-20 flex flex-col bg-[url('http://localhost:1337/uploads/0818241539_HDR_2_50_30cbccf403.jpg')] bg-contain bg-no-repeat sm:bg-cover  justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
         <div className="flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-md xl:max-w-lg lg:text-left">
           <HighlightedText
             text={data.title}
             tag="h1"
-            className="text-5xl font-bold leading-none sm:text-6xl mb-8"
+            className="text-5xl font-bold  mt-28 sm:mt-0 leading-none sm:text-6xl mb-8"
             color="dark:text-violet-400"
           />
 
