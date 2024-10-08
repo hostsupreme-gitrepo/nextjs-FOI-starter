@@ -35,6 +35,7 @@ interface HeroProps {
 
 export default function Hero({ data }: HeroProps) {
   const imgUrl = getStrapiMedia(data.picture.data.attributes.url);
+ 
 
   return (
     <section className="dark:bg-black dark:text-gray-100">

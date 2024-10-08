@@ -1,0 +1,68 @@
+[
+	{
+			"FirstName": "Abdul",
+			"LastName": "Muhammad",
+			"Rank": "Minister",
+			"NationsID": "2129",
+			"PhoneNumber": "",
+			"City": 4,
+			"Email": "",
+			"Middle": "Halim"
+		
+	},
+	{
+			"FirstName": "Abdul",
+			"LastName": "Muhammad",
+			"Rank": "Private",
+			"NationsID": "409",
+			"PhoneNumber": "",
+			"City": 4,
+			"Email": "chiznaz@gmail.com",
+			"Middle": "Iman"
+		
+	},
+	{
+			"FirstName": "Ali",
+			"LastName": "Muhammad",
+			"Rank": "Lieutenant",
+			"NationsID": "4033",
+			"PhoneNumber": "6028144513",
+			"City": 4,
+			"Email": "",
+			"Middle": ""
+		
+	},
+	{
+			"FirstName": "Andreas",
+			"LastName": "Muhammad",
+			"Rank": "Private",
+			"NationsID": "197578",
+			"PhoneNumber": "6023280263",
+			"City": 4,
+			"Email": "",
+			"Middle": ""
+		
+	},
+	{
+			"FirstName": "Anthony",
+			"LastName": "Land",
+			"Rank": "Private",
+			"NationsID": "61892",
+			"PhoneNumber": "",
+			"City": 4,
+			"Email": "anthonylatronx.al@gmail.com",
+			"Middle": "X"
+		
+	},
+	{
+			"FirstName": "Billy",
+			"LastName": "Muhammad",
+			"Rank": "Private",
+			"NationsID": "3134",
+			"PhoneNumber": "6027407607",
+			"City": 4,
+			"Email": "",
+			"Middle": ""
+		
+	}
+]

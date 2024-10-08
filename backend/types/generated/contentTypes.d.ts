@@ -920,6 +920,99 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiCityCity extends Schema.CollectionType {
+  collectionName: 'cities';
+  info: {
+    singularName: 'city';
+    pluralName: 'cities';
+    displayName: 'City';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String & Attribute.Required;
+    State: Attribute.Enumeration<
+      [
+        'California',
+        'Arizona',
+        'Nevada',
+        'Utah',
+        'Washington',
+        'Oregon',
+        'Colorado'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'California'>;
+    slug: Attribute.UID<'api::city.city', 'Name'> & Attribute.Required;
+    fois: Attribute.Relation<'api::city.city', 'oneToMany', 'api::foi.foi'>;
+    Photo: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFoiFoi extends Schema.CollectionType {
+  collectionName: 'fois';
+  info: {
+    singularName: 'foi';
+    pluralName: 'fois';
+    displayName: 'FOI';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    FirstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    LastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 45;
+      }>;
+    Rank: Attribute.Enumeration<
+      [
+        'Private',
+        'Squad Leader',
+        'Lieutenant',
+        'First Officer',
+        'Captain',
+        'Minister'
+      ]
+    > &
+      Attribute.Required;
+    Email: Attribute.Email;
+    NationsID: Attribute.String & Attribute.Required & Attribute.Unique;
+    PhoneNumber: Attribute.String &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 10;
+      }>;
+    Photo: Attribute.Media<'images'>;
+    city: Attribute.Relation<'api::foi.foi', 'manyToOne', 'api::city.city'>;
+    Middle: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::foi.foi', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::foi.foi', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
@@ -1165,6 +1258,8 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::city.city': ApiCityCity;
+      'api::foi.foi': ApiFoiFoi;
       'api::global.global': ApiGlobalGlobal;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;

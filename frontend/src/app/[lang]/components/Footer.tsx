@@ -92,28 +92,28 @@ export default function Footer({
             </Logo>
           </div>
 
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
+{/*           <div className="col-span-6 text-center md:text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium">Categories</p>
             <ul>
               {categoryLinks.map((link: CategoryLink) => (
                 <CategoryLink key={link.id} {...link} />
               ))}
             </ul>
-          </div>
+          </div> */}
 
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
+{/*           <div className="col-span-6 text-center md:text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium">Menu</p>
             <ul>
               {menuLinks.map((link: FooterLink) => (
                 <FooterLink key={link.id} {...link} />
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
-        <div className="grid justify-center pt-6 lg:justify-between">
-          <div className="flex">
+        <div className="flex flex-col items-center justify-center pt-6 lg:justify-between">
+          <div className="flex items-center">
             <span className="mr-2">
-              ©{new Date().getFullYear()} All rights reserved
+             Muhammad Mosque #32 - ©{new Date().getFullYear()} - All rights reserved
             </span>
             <ul className="flex">
               {legalLinks.map((link: FooterLink) => (
@@ -127,7 +127,7 @@ export default function Footer({
               ))}
             </ul>
           </div>
-          <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
+{/*           <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
             {socialLinks.map((link: FooterLink) => {
               return (
                 <a
@@ -142,7 +142,7 @@ export default function Footer({
                 </a>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

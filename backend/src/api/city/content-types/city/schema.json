@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cities",
+  "info": {
+    "singularName": "city",
+    "pluralName": "cities",
+    "displayName": "City",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "State": {
+      "type": "enumeration",
+      "enum": [
+        "California",
+        "Arizona",
+        "Nevada",
+        "Utah",
+        "Washington",
+        "Oregon",
+        "Colorado"
+      ],
+      "default": "California",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name",
+      "required": true
+    },
+    "fois": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::foi.foi",
+      "mappedBy": "city"
+    },
+    "Photo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
