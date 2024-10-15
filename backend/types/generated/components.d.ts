@@ -347,6 +347,21 @@ export interface LayoutFooter extends Schema.Component {
   };
 }
 
+export interface GeographicAddress extends Schema.Component {
+  collectionName: 'components_geographic_addresses';
+  info: {
+    displayName: 'Address';
+    icon: 'earth';
+  };
+  attributes: {
+    Street1: Attribute.String;
+    Street2: Attribute.String;
+    City: Attribute.String;
+    State: Attribute.String;
+    Zip: Attribute.String;
+  };
+}
+
 export interface ElementsTestimonial extends Schema.Component {
   collectionName: 'components_slices_testimonials';
   info: {
@@ -503,6 +518,7 @@ declare module '@strapi/types' {
       'layout.navbar': LayoutNavbar;
       'layout.logo': LayoutLogo;
       'layout.footer': LayoutFooter;
+      'geographic.address': GeographicAddress;
       'elements.testimonial': ElementsTestimonial;
       'elements.plan': ElementsPlan;
       'elements.notification-banner': ElementsNotificationBanner;

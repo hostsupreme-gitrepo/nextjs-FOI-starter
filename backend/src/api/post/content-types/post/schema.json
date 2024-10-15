@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "shifts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shift.shift"
+    },
+    "Lodging": {
+      "type": "component",
+      "repeatable": true,
+      "component": "geographic.address"
+    },
+    "postid": {
+      "type": "uid"
+    },
+    "Name": {
+      "type": "enumeration",
+      "enum": [
+        "National House",
+        "MGT"
+      ]
+    },
+    "city": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::city.city",
+      "inversedBy": "posts"
+    }
+  }
+}

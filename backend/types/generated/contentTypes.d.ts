@@ -949,6 +949,7 @@ export interface ApiCityCity extends Schema.CollectionType {
     slug: Attribute.UID<'api::city.city', 'Name'> & Attribute.Required;
     fois: Attribute.Relation<'api::city.city', 'oneToMany', 'api::foi.foi'>;
     Photo: Attribute.Media<'images'>;
+    posts: Attribute.Relation<'api::city.city', 'oneToMany', 'api::post.post'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1003,6 +1004,9 @@ export interface ApiFoiFoi extends Schema.CollectionType {
     Photo: Attribute.Media<'images'>;
     city: Attribute.Relation<'api::foi.foi', 'manyToOne', 'api::city.city'>;
     Middle: Attribute.String;
+    Authorized: Attribute.Boolean & Attribute.DefaultTo<true>;
+    shift: Attribute.Relation<'api::foi.foi', 'manyToOne', 'api::shift.shift'>;
+    shifts: Attribute.Relation<'api::foi.foi', 'oneToMany', 'api::shift.shift'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1206,6 +1210,37 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
+  info: {
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: 'Post';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    shifts: Attribute.Relation<
+      'api::post.post',
+      'oneToMany',
+      'api::shift.shift'
+    >;
+    Lodging: Attribute.Component<'geographic.address', true>;
+    postid: Attribute.UID;
+    Name: Attribute.Enumeration<['National House', 'MGT']>;
+    city: Attribute.Relation<'api::post.post', 'manyToOne', 'api::city.city'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductFeatureProductFeature extends Schema.CollectionType {
   collectionName: 'product_features';
   info: {
@@ -1230,6 +1265,40 @@ export interface ApiProductFeatureProductFeature extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product-feature.product-feature',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShiftShift extends Schema.CollectionType {
+  collectionName: 'shifts';
+  info: {
+    singularName: 'shift';
+    pluralName: 'shifts';
+    displayName: 'Shift';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    shiftid: Attribute.UID;
+    StartTime: Attribute.DateTime & Attribute.Required;
+    EndTime: Attribute.DateTime;
+    fois: Attribute.Relation<'api::shift.shift', 'oneToMany', 'api::foi.foi'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shift.shift',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shift.shift',
       'oneToOne',
       'admin::user'
     > &
@@ -1263,7 +1332,9 @@ declare module '@strapi/types' {
       'api::global.global': ApiGlobalGlobal;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;
+      'api::post.post': ApiPostPost;
       'api::product-feature.product-feature': ApiProductFeatureProductFeature;
+      'api::shift.shift': ApiShiftShift;
     }
   }
 }

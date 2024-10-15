@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_geographic_addresses",
+  "info": {
+    "displayName": "Address",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "Street1": {
+      "type": "string"
+    },
+    "Street2": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "State": {
+      "type": "string"
+    },
+    "Zip": {
+      "type": "string"
+    }
+  }
+}

@@ -57,7 +57,7 @@ export default function Profile() {
   }, []);
 
 
-  function loadMorePosts(): void {
+  function loadMore(): void {
     const nextPosts = meta!.pagination.start + meta!.pagination.limit;
     fetchData(city,nextPosts, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
   }
@@ -79,7 +79,7 @@ export default function Profile() {
             <button
               type="button"
               className="px-6 py-3 text-xl rounded-lg hover:underline dark:bg-gray-900 dark:text-gray-400"
-              onClick={loadMorePosts}
+              onClick={loadMore}
             >
               Load more ...
             </button>

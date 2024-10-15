@@ -68,6 +68,21 @@
     },
     "Middle": {
       "type": "string"
+    },
+    "Authorized": {
+      "type": "boolean",
+      "default": true
+    },
+    "shift": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shift.shift",
+      "inversedBy": "fois"
+    },
+    "shifts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shift.shift"
     }
   }
 }

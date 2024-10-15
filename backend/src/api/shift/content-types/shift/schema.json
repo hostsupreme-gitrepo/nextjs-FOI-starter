@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shifts",
+  "info": {
+    "singularName": "shift",
+    "pluralName": "shifts",
+    "displayName": "Shift",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "shiftid": {
+      "type": "uid"
+    },
+    "StartTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "EndTime": {
+      "type": "datetime"
+    },
+    "fois": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::foi.foi",
+      "mappedBy": "shift"
+    }
+  }
+}
