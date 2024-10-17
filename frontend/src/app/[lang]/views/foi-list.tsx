@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { getStrapiMedia, formatDate } from "../utils/api-helpers";
 import { useState, useEffect, useCallback } from 'react'
-import CheckBoxWithLabel from "../components/CheckboxwithLabel";
-import getFoiForShift from "../actions/ShiftFOI"
 import PostFOI from "../components/PostSideBar";
+import formatUSNumber from "../utils/phoneformater";
+import { usePathname } from 'next/navigation';
 
 interface Foi {
   id: number;
@@ -28,17 +28,6 @@ interface Foi {
   };
 }
 
-function formatUSNumber(entry: string) {
-  // @ts-ignore: Object is possibly 'null'.
-  const match = entry
-    .replace(/\D+/g, '').replace(/^1/, '')
-    .match(/([^\d]*\d[^\d]*){1,10}$/)[0];
-  const part1 = match.length > 2 ? `(${match.substring(0, 3)})` : match
-  const part2 = match.length > 3 ? ` ${match.substring(3, 6)}` : ''
-  const part3 = match.length > 6 ? `-${match.substring(6, 10)}` : ''
-  return `${part1}${part2}${part3}`
-}
-
 
 export default function FoiList({
   data: fois,
@@ -47,15 +36,15 @@ export default function FoiList({
   data: Foi[];
   children?: React.ReactNode;
 }) {
-
+  const city = usePathname().split('/')[3]
   const cols = fois.length >= 5 ? 5 : fois.length;
   const [poststarted, setPoststarted] = useState(false)
-  const [postfoi, setPostfoi] = useState("")
-
+  const [postfois, setPostfois] = useState([])
+  //let postfois: any[] = [];
 
   return (
     <section className="container p-4 mx-auto space-y-6 sm:space-y-12">
-      {PostFOI(postfoi,fois)}
+      {PostFOI(postfois,city)}
       <div className="w-[50%] ml-[25%] bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
         <p className="font-bold">Click any FOI</p>
         <p className="text-sm">To start a new post schedule.</p>
@@ -68,41 +57,50 @@ export default function FoiList({
 
 
           const selectfoi = useCallback(async () => {
-            const shiftfoi = [
-              `${foi.attributes.FirstName} ${foi.attributes.Middle === "null" ? "" : foi.attributes.Middle} ${foi.attributes.LastName}`,
-              foi.attributes.NationsID,
-              foi.attributes.Rank,
-              foi.attributes.PhoneNumber,
-              foi.attributes.Photo.data.attributes.url
-            ]
-            const foilist = await getFoiForShift(shiftfoi, postfoi)
-            setPostfoi(foilist)
+            const shiftfoi = {
+              "id": foi.id,
+              "Name":`${foi.attributes.FirstName} ${foi.attributes.Middle === "null" ? "" : foi.attributes.Middle} ${foi.attributes.LastName}`,
+              "NationsID":foi.attributes.NationsID,
+              "Rank":foi.attributes.Rank,
+              "PhoneNumber":foi.attributes.PhoneNumber,
+              "url":foi.attributes.Photo.data?.attributes.url|| '/uploads/revised_noi_logo2_942d6c26ae.png'
+
+            }
+            //setPostfois(foilist)
             const foicard = document.getElementById(`card-${foi.id}`)!;
             const pendingshift = document.getElementById(`pending-${foi.id}`)!;
-
             const children = pendingshift!.childNodes;
+            let size = 0;
 
             if (children[0].textContent === 'Pending') {
+              size = size - 1 ;
               foicard.style.borderColor = 'white'
               pendingshift.style.backgroundColor = 'white'
               children[0].textContent = ''
+              setPostfois(postfois.filter(
+                
+                obj => obj.id !== foi.id
+              ));
             } else {
+              size = size + 1 ;
               foicard.style.borderColor = 'red'
               pendingshift.style.backgroundColor = 'red'
               children[0].textContent = 'Pending'
-            }
+              setPostfois([... postfois, shiftfoi] )
+            }      
 
             document.getElementById('post-builder')!.style.display = 'block';
 
-            if (foilist.length === 0) {
+             if (size === 0) {
               document.getElementById('post-builder')!.style.display = 'none';
-            }
-
-          }, [postfoi]);
+            }  
+            console.log(size)
+          }, [postfois]);
 
 
           return (
             <div id={`card-${foi.id}`} onClick={selectfoi}
+            
               className="flex flex-col w-full mx-auto border-2 border-white group hover:no-underline 
               focus:no-underline dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg"
             >

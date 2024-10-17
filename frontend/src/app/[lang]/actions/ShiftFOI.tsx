@@ -1,7 +1,7 @@
 'use sever'
-export default async function getFoiForShift(foi: [], postlist: string) {
+export default async function getFoiForShift(foi: {}, postlist: string) {
   let newlist = "";
-  let foistr = foi.join();
+  let foistr = JSON.stringify(foi);
 
   if (postlist.includes(foistr)) {
     newlist = postlist.replace(foistr + "||", "");
