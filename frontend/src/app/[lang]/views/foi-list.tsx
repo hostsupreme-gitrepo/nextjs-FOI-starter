@@ -28,6 +28,7 @@ interface Foi {
   };
 }
 
+let size = 0;
 
 export default function FoiList({
   data: fois,
@@ -70,10 +71,10 @@ export default function FoiList({
             const foicard = document.getElementById(`card-${foi.id}`)!;
             const pendingshift = document.getElementById(`pending-${foi.id}`)!;
             const children = pendingshift!.childNodes;
-            let size = 0;
+            
 
             if (children[0].textContent === 'Pending') {
-              size = size - 1 ;
+              size -= 1 ;
               foicard.style.borderColor = 'white'
               pendingshift.style.backgroundColor = 'white'
               children[0].textContent = ''
@@ -82,7 +83,7 @@ export default function FoiList({
                 obj => obj.id !== foi.id
               ));
             } else {
-              size = size + 1 ;
+              size += 1 ;
               foicard.style.borderColor = 'red'
               pendingshift.style.backgroundColor = 'red'
               children[0].textContent = 'Pending'
@@ -94,7 +95,7 @@ export default function FoiList({
              if (size === 0) {
               document.getElementById('post-builder')!.style.display = 'none';
             }  
-            console.log(size)
+            //console.log(size)
           }, [postfois]);
 
 

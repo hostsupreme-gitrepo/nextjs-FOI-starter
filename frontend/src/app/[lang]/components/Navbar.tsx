@@ -40,7 +40,7 @@ function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
     closeMenu();
   };
   return (
-    <a className="flex">
+    <div className="flex">
       <Link
         href={url}
         onClick={handleClick}
@@ -50,7 +50,7 @@ function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
       >
         {text}
       </Link>
-    </a>
+    </div>
   );
 }
 

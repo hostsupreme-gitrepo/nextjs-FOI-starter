@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import FoiList from '@/app/[lang]/views/foi-list';
 import PageHeader from '@/app/[lang]/components/PageHeader';
 
+
 interface Meta {
   pagination: {
     start: number;
@@ -70,6 +71,7 @@ export default function Profile() {
   if (isLoading) return <Loader />;
 
   return (
+    
     <div>
       <PageHeader heading={city.replace('-', ' ').toUpperCase()} text={"City Of"} />
       <FoiList data={data}>
