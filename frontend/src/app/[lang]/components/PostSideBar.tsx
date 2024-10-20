@@ -44,18 +44,18 @@ export default function PostFOI(assignedfoi: any[], city: string) {
                     <div>{city.replace('-', ' ').toUpperCase()}</div>
                     <div className="text-[.5rem]  text-left">{formatDate(today.toDateString())}</div>
                 </section>
-                <section className="text-center border-y-2 h-20 border-slate-800">
+                <section className="text-center text-xl font-bold border-y-2 min-h-20 border-slate-800">
                     Lodging
-                    <form className="flex flex-col">
-                        <input type="text" ></input>
-                        <input type="text" ></input>
-                        <input type="text" ></input>
-                        <input type="text" ></input>
+                    <form className="flex flex-col items-center justify-left pb-2 w-[50%}">
+                        <input type="text" placeholder="Name"></input>
+                        <input type="text" placeholder="Address"></input>
+                        <input type="text" placeholder="Zip-Code"></input>
+                        <input type="text" placeholder="Phone"></input>
                     </form>
                 </section>
-                <section className="text-center border-y-2 min-h-72 border-slate-800">
+                <section className="text-center text-xl pt-2 font-bold border-y-2 min-h-72 border-slate-800">
                     List
-                    <div className={`grid justify-left grid-cols-4 gap-6   bg-white border-2  border-b-2 border-black`}>
+                    <div className={`grid justify-left grid-cols-4 gap-6 text-base  bg-white border-2  border-b-2 border-black`}>
                         <div>NAME</div><div>ID</div><div>Rank</div><div>PHONE</div>
                     </div>
                     {assignedfoi.map((foi) => {
@@ -71,8 +71,30 @@ export default function PostFOI(assignedfoi: any[], city: string) {
                     })}
 
                 </section>
-                <section className="text-center border-y-1 border-slate-800">
+                <section className="text-center text-xl font-bold border-y-1 border-slate-800">
                     Schedule
+                    <table className="bg-white w-full text-center text-sm">
+                        
+                        <th className="w-[45%]">Squad</th><th className="w-[15%]">Date</th><th className="w-[20%]">Begin Time</th><th className="w-[20%]">End Time</th>
+                        
+                        <tbody className=" border-black border-1">
+<tr>
+                          <td>
+                          
+                            <select id="browsers">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="fiat">Fiat</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                        
+                            </td>
+                          <td><input type="date" ></input></td>
+                          <td><input type="time" ></input></td>
+                          <td><input type="time" ></input></td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <form className="flex flex-col">
                         <input type="text" ></input>
                         <input type="text" ></input>
