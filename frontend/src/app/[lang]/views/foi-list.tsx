@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import PostFOI from "../components/PostSideBar";
 import formatUSNumber from "../utils/phoneformater";
 import { usePathname } from 'next/navigation';
+import Draggable from 'react-draggable';
 
 interface Foi {
   id: number;
@@ -45,7 +46,9 @@ export default function FoiList({
 
   return (
     <section className="container p-4 mx-auto space-y-6 sm:space-y-12">
+      <Draggable>
       {PostFOI(postfois,city)}
+      </Draggable>
       <div className="w-[50%] ml-[25%] bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
         <p className="font-bold">Click any FOI</p>
         <p className="text-sm">To start a new post schedule.</p>

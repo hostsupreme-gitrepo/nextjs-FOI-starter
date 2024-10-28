@@ -14,14 +14,14 @@ export default function Photos(assignedfoi:any[]) {
             return (
                 <div id={`preview-photo-${foi.id}`}
 
-                    className="flex flex-col justify-between w-24 h-{[8.5rem] mx-auto bg-white border-2  border-white group hover:no-underline 
+                    className="flex flex-col justify-between w-32 h-{[8.5rem] mx-auto bg-white border-2  border-white group hover:no-underline 
 dark:bg-gray-900 rounded-2x2 overflow-hidden shadow-lg"
                 >
                     {imageUrl && (
                         <Image
                             alt="presentation"
-                            width="100"
-                            height="100"
+                            width="200"
+                            height="200"
                             className="object-contain"
                             src={imageUrl}
                         />
