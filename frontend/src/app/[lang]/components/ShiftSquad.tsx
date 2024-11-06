@@ -13,7 +13,7 @@ export default function selectSquad(assignedfoi: any[]) {
 
         if (namepos === -1) {
             list.push(name)
-            grayscale = "grayscale(1)";;
+            grayscale = "grayscale(1)";
             opacity = "0.5"
         } else {
             list.splice(namepos, 1);
@@ -25,10 +25,14 @@ export default function selectSquad(assignedfoi: any[]) {
         function checkName(fname: string) {
             return fname === name;
         }
+        if (option != null) {
+            option.style.filter = grayscale;
+            option.style.opacity = opacity;
+        }
+        if (listfill != null) {
+            listfill.innerText = list.join(", ") || "";
+        }
 
-        option.style.filter = grayscale;
-        option.style.opacity = opacity;
-        listfill.innerText = list.join(",") || "";
 
         return name;
 
@@ -42,14 +46,16 @@ export default function selectSquad(assignedfoi: any[]) {
             </div>
             <div className="absolute opacity-0 group-hover:opacity-100 transition ease-in-out duration-700 w-36 border-2 border-slate-400 bg-slate-50">
                 {assignedfoi.map((foi) => {
+                    const shiftname = foi.Name.split(" ").slice(0, -1).join(" ").replace(" null", "");
                     const imageUrl = getStrapiMedia(
                         foi.url || '/uploads/revised_noi_logo2_942d6c26ae.png'
                     );
                     return (
+
                         <div className="hover:bg-slate-500 cursor-pointer" data-option-name={foi.Name.split(" ")[0]}
                         >
                             <div id={`option-${foi.NationsID}`} className="flex flex-row items-center p-1 h-6 w-6 gap-4 "
-                                onClick={(e: any) => buildshiftlist(foi.Name.split(" ")[0], `option-${foi.NationsID}`)}>
+                                onClick={(e: any) => buildshiftlist(shiftname, `option-${foi.NationsID}`)}>
                                 {imageUrl && (
                                     <Image
                                         alt="presentation"
@@ -59,7 +65,7 @@ export default function selectSquad(assignedfoi: any[]) {
                                         src={imageUrl}
                                     />
                                 )}
-                                <div id={`option-${foi.NationsID}-name`} >{foi.Name.split(" ")[0]}</div>
+                                <div id={`option-${foi.NationsID}-name`} className="w-full text-nowrap ">{shiftname}</div>
                             </div>
                         </div>
 

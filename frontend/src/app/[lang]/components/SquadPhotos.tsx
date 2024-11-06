@@ -13,7 +13,6 @@ export default function Photos(assignedfoi:any[]) {
 
             return (
                 <div id={`preview-photo-${foi.id}`}
-
                     className="flex flex-col justify-between w-32 h-{[8.5rem] mx-auto bg-white border-2  border-white group hover:no-underline 
 dark:bg-gray-900 rounded-2x2 overflow-hidden shadow-lg"
                 >
@@ -27,7 +26,7 @@ dark:bg-gray-900 rounded-2x2 overflow-hidden shadow-lg"
                         />
                     )}
                     <div className="flex flex-col p-[.25] relative">
-                        <h3 className="text-[.5rem] text-wrap font-semibold ">
+                        <h3 className="text-[1rem] pb-1 text-wrap font-semibold ">
                             {`${foi.Name.replace('null ', '')}`}
                         </h3>
                     </div>

@@ -62,7 +62,7 @@ export default function FoiList({
 
           const selectfoi = useCallback(async () => {
             const shiftfoi = {
-              "id": foi.id,
+              "id": foi.id  as number,
               "Name":`${foi.attributes.FirstName} ${foi.attributes.Middle === "null" ? "" : foi.attributes.Middle} ${foi.attributes.LastName}`,
               "NationsID":foi.attributes.NationsID,
               "Rank":foi.attributes.Rank,
@@ -83,7 +83,7 @@ export default function FoiList({
               children[0].textContent = ''
               setPostfois(postfois.filter(
                 
-                obj => obj.id !== foi.id
+                obj  => obj.id  !== foi.id
               ));
             } else {
               size += 1 ;

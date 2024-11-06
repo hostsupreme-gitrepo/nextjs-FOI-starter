@@ -40,6 +40,9 @@ export function formatMilitaryTime(timeString: string) {
         hr -= 12;
         suff = "PM"
     }
+    if (hr == 0 ) {
+        hr = 12;
+    }
     return `${hr}:${timeString.split(":")[1]} ${suff}`
 }
 
