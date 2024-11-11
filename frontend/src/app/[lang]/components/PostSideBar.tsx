@@ -15,9 +15,9 @@ export default function PostFOI(assignedfoi: any[], city: string) {
     const [shiftdate, setShiftdate] = useState();
     const [shiftstart, setShiftstart] = useState("12:00:00");
     const [shiftend, setShiftend] = useState("12:00:00");
-    const postbuilderstyle = `flex flex-col  text-xs fixed top-20 z-50 border-1 border-slate-600 shadow-xl shadow-slate-600   w-[40%] `
+    const postbuilderstyle = `hidden flex flex-col  text-xs fixed top-20 z-50 border-1 border-slate-600 shadow-xl shadow-slate-600   w-[40%] `
     const page1style = `p-2 bg-gray-100/85 w-full min-h-[850px]`
-    const page2style = `p-2 bg-gray-100/85 w-full h-[850px] absolute -bottom-[850px]`;
+    const page2style = `p-2 bg-gray-100/85 w-full h-[900px] absolute top-[1025px]`;
     
 
     let shiftcount = 1;
@@ -37,7 +37,9 @@ export default function PostFOI(assignedfoi: any[], city: string) {
 
     const handleGeneratePdf = (city: string) => {
         const moment = require('moment');
-        const printrange = document.getElementById("print-range") || " ";
+        const page2 = document.getElementById("page-2");
+        const cardno = document.getElementById("card-64");
+        const printrange = document.getElementById("print-range");
         const donotprint1 = document.getElementById("addshift");
         const donotprint2 = document.getElementById("addshift-next");
         const opt = {
@@ -47,10 +49,10 @@ export default function PostFOI(assignedfoi: any[], city: string) {
             html2canvas: { scale: 2 },
             jsPDF: {
                 unit: "in",
-                format: "letter",
+                format: "a4",
                 orientation: "portrait"
             },
-            pagebreak: {  mode: 'avoid-all',before: '#page-2' }
+            pagebreak: { mode: "avoid-all", after: '#page-1' }
 
         };
 
@@ -59,7 +61,8 @@ export default function PostFOI(assignedfoi: any[], city: string) {
             donotprint2.style.display = "none";
         }
          //html2pdf(printrange).set(opt).save();
-        html2pdf().from(pagesRef.current).set(opt).save();
+        //html2pdf().from(pagesRef.current).set(opt).save();
+        html2pdf().set(opt).from(printrange).save();
     };
 
     const reportdates = function () {
@@ -132,7 +135,7 @@ export default function PostFOI(assignedfoi: any[], city: string) {
 
 
 
-            <div id="print-range" ref={pagesRef} className="flex flex-row ">
+            <div id="print-range" ref={pagesRef} className="flex flex-row h-[2500px]">
                 <div id="page-1" className={page1style}>
                     <section className="flex flex-col h-[115px] text-center text-xl border-b-2 font-bold">
                         <div>National House Post Schedule</div>
@@ -197,9 +200,10 @@ export default function PostFOI(assignedfoi: any[], city: string) {
                         </form>
    
                     </section>
-                     <div className="bottom-0 inset-x-0 pb-2 text-center font-bold">
+                    <div className="absolute top-[975px] inset-x-0 pb-2 text-center font-bold">
                         Page 1
-                    </div>                    
+                    </div> 
+                                         
                 </div>
 
                 <div id="page-2" className={page2style}>
@@ -207,9 +211,9 @@ export default function PostFOI(assignedfoi: any[], city: string) {
                         <div className="text-xl font-bold">Photos</div>
                         {Photos(assignedfoi)}
                     </section>
-                    <div className="bottom-0 inset-x-0  text-center font-bold">
+{/*                     <div className="bottom-0 inset-x-0  text-center font-bold">
                         Page 2
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
