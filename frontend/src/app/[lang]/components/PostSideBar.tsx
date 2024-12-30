@@ -135,7 +135,7 @@ export default function PostFOI(assignedfoi: any[], city: string) {
 
 
 
-            <div id="print-range" ref={pagesRef} className="flex flex-row h-[2000px]">
+            <div id="print-range" ref={pagesRef} className="flex flex-row h-[1950px]">
                 <div id="page-1" className={page1style}>
                     <section className="flex flex-col h-[115px] text-center text-xl border-b-2 font-bold">
                         <div>National House Post Schedule</div>
