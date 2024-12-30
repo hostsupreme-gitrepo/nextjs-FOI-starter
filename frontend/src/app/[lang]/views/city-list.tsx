@@ -8,11 +8,12 @@ interface City {
     Name: string;
     State: string;
     slug: string;
-    Photo:{
-      data:{
-        attributes:{
-          url:string;
-        }}
+    Photo: {
+      data: {
+        attributes: {
+          url: string;
+        }
+      }
     };
     fois: {
       data: [
@@ -39,13 +40,13 @@ export default function CityList({
       <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {cities.map((city) => {
           const imageUrl = getStrapiMedia(
-            city.attributes.Photo?.data?.attributes.url || 'http://localhost:1337/uploads/revised_noi_logo2_942d6c26ae.png'
+            city.attributes.Photo?.data?.attributes.url || 'http://localhost:1337/uploads/FOI_Screenshot_2024_12_30_090233_061c20008a.jpg'
           );
 
           return (
             <Link
               className="max-w-sm mx-auto group transition duration-500 ease-in-out hover:shadow-gray-900 hover:transform hover:scale-105 focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
-            href={`cities/${city.attributes.slug}`}
+              href={`cities/${city.attributes.slug}`}
             >
               {imageUrl && (
                 <Image
@@ -68,7 +69,7 @@ export default function CityList({
                     {'Placeholder-2'}
                   </span>
                 </div>
-                <p className="py-4">{city.attributes.fois?.data.length||0} FOI authorized</p>
+                <p className="py-4">{city.attributes.fois?.data.length || 0} FOI authorized</p>
               </div>
             </Link>
           );

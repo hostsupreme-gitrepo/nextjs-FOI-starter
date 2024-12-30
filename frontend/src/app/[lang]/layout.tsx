@@ -42,7 +42,7 @@ export async function generateMetadata({ params } : { params: {lang: string}}): 
   if (!meta.data) return FALLBACK_SEO;
 
   const { metadata, favicon } = meta.data.attributes;
-  //const { url } = favicon.data.attributes;
+  const { url } = favicon.data.attributes;
 
   return {
     title: metadata.metaTitle,

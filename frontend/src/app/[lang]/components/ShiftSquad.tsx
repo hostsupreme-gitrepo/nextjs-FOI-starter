@@ -48,7 +48,7 @@ export default function selectSquad(assignedfoi: any[]) {
                 {assignedfoi.map((foi) => {
                     const shiftname = foi.Name.split(" ").slice(0, -1).join(" ").replace(" null", "");
                     const imageUrl = getStrapiMedia(
-                        foi.url || '/uploads/revised_noi_logo2_942d6c26ae.png'
+                        foi.url || '/uploads/FOI_Screenshot_2024_12_30_090233_061c20008a.jpg'
                     );
                     return (
 

@@ -8,25 +8,25 @@ export default function Photos(assignedfoi:any[]) {
 
         {assignedfoi.map((foi) => {
             const imageUrl = getStrapiMedia(
-                foi.url || '/uploads/revised_noi_logo2_942d6c26ae.png'
+                foi.url || '/uploads/FOI_Screenshot_2024_12_30_090233_061c20008a.jpg'
             );
 
             return (
                 <div id={`preview-photo-${foi.id}`}
-                    className="flex flex-col justify-between w-32 h-{[8.5rem] mx-auto bg-white border-2  border-white group hover:no-underline 
+                    className="flex flex-col justify-between w-32 m-h-{[8.5rem] mx-auto bg-white border border-black  group hover:no-underline 
 dark:bg-gray-900 rounded-2x2 overflow-hidden shadow-lg"
                 >
                     {imageUrl && (
                         <Image
                             alt="presentation"
-                            width="200"
+                            width="125"
                             height="200"
-                            className="object-contain"
+                            className="h-[10rem] w-[9rem] object-fill"
                             src={imageUrl}
                         />
                     )}
                     <div className="flex flex-col p-[.25] relative">
-                        <h3 className="text-[1rem] pb-1 text-wrap font-semibold ">
+                        <h3 className="text-[.75rem] pb-1 text-nowrap font-semibold ">
                             {`${foi.Name.replace('null ', '')}`}
                         </h3>
                     </div>

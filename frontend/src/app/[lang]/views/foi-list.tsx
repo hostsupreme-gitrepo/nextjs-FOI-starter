@@ -47,7 +47,7 @@ export default function FoiList({
   return (
     <section className="container p-4 mx-auto space-y-6 sm:space-y-12">
       <Draggable>
-      {PostFOI(postfois,city)}
+        {PostFOI(postfois, city)}
       </Draggable>
       <div className="w-[50%] ml-[25%] bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
         <p className="font-bold">Click any FOI</p>
@@ -56,55 +56,55 @@ export default function FoiList({
       <div className={`grid justify-center grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-5 `}>
         {fois.map((foi) => {
           const imageUrl = getStrapiMedia(
-            foi.attributes.Photo.data?.attributes.url || '/uploads/revised_noi_logo2_942d6c26ae.png'
+            foi.attributes.Photo.data?.attributes.url || '/uploads/FOI_Screenshot_2024_12_30_090233_061c20008a.jpg'
           );
 
 
           const selectfoi = useCallback(async () => {
             const shiftfoi = {
-              "id": foi.id  as number,
-              "Name":`${foi.attributes.FirstName} ${foi.attributes.Middle === "null" ? "" : foi.attributes.Middle} ${foi.attributes.LastName}`,
-              "NationsID":foi.attributes.NationsID,
-              "Rank":foi.attributes.Rank,
-              "PhoneNumber":foi.attributes.PhoneNumber,
-              "url":foi.attributes.Photo.data?.attributes.url|| '/uploads/revised_noi_logo2_942d6c26ae.png'
+              "id": foi.id as number,
+              "Name": `${foi.attributes.FirstName} ${foi.attributes.Middle === "null" ? "" : foi.attributes.Middle} ${foi.attributes.LastName}`,
+              "NationsID": foi.attributes.NationsID,
+              "Rank": foi.attributes.Rank,
+              "PhoneNumber": foi.attributes.PhoneNumber,
+              "url": foi.attributes.Photo.data?.attributes.url || '/uploads/FOI_Screenshot_2024_12_30_090233_061c20008a.jpg'
 
             }
             //setPostfois(foilist)
             const foicard = document.getElementById(`card-${foi.id}`)!;
             const pendingshift = document.getElementById(`pending-${foi.id}`)!;
             const children = pendingshift!.childNodes;
-            
+
 
             if (children[0].textContent === 'Pending') {
-              size -= 1 ;
+              size -= 1;
               foicard.style.borderColor = 'white'
               pendingshift.style.backgroundColor = 'white'
               children[0].textContent = ''
               setPostfois(postfois.filter(
-                
-                obj  => obj.id  !== foi.id
+
+                obj => obj.id !== foi.id
               ));
             } else {
-              size += 1 ;
+              size += 1;
               foicard.style.borderColor = 'red'
               pendingshift.style.backgroundColor = 'red'
               children[0].textContent = 'Pending'
-              setPostfois([... postfois, shiftfoi] )
-            }      
+              setPostfois([...postfois, shiftfoi])
+            }
 
             document.getElementById('post-builder')!.style.display = 'block';
 
-             if (size === 0) {
+            if (size === 0) {
               document.getElementById('post-builder')!.style.display = 'none';
-            }  
+            }
             //console.log(size)
           }, [postfois]);
 
 
           return (
             <div id={`card-${foi.id}`} onClick={selectfoi}
-            
+
               className="flex flex-col w-full mx-auto border-2 border-white group hover:no-underline 
               focus:no-underline dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg"
             >
@@ -131,7 +131,7 @@ export default function FoiList({
                 </div>
                 <div className="flex flex-col items-baseline">
                   <p className="text-xs py-1">
-                    {formatUSNumber(foi.attributes.PhoneNumber) || 'No Phone'} {foi.attributes.Email || 'No Email'}</p>
+                    {formatUSNumber(foi.attributes.PhoneNumber) || 'No Phone'}<br></br> {foi.attributes.Email || 'No Email'}</p>
                 </div>
               </div>
               <div id={`pending-${foi.id}`} className="w-full h-4 animate-pulse text-center bg-white text-white text-[0.5rem] " >
